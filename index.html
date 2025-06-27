@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Key Generator</title>
+</head>
+<body>
+  <h1>Generate Your Key</h1>
+  <button id="generateBtn">Generate Key</button>
+  <p id="result"></p>
+
+  <script>
+    const btn = document.getElementById('generateBtn');
+    const result = document.getElementById('result');
+
+    btn.addEventListener('click', async () => {
+      result.textContent = 'Generating...';
+      try {
+        const response = await fetch('http://localhost:3000/generate-key', {
+          method: 'POST',
+        });
+        const data = await response.json();
+        if (data.success) {
+          result.textContent = 'Your key: ' + data.key;
+        } else {
+          result.textContent = 'Failed to generate key.';
+        }
+      } catch (err) {
+        result.textContent = 'Error: ' + err.message;
+      }
+    });
+  </script>
+</body>
+</html>
