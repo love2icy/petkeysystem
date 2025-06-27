@@ -79,3 +79,15 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Key generator API running on port ${PORT}`);
 });
+app.get('/keys.txt', async (req, res) => {
+  try {
+    const fileData = await getFileData();
+    if (!fileData) return res.send('');
+
+    const content = Buffer.from(fileData.content, 'base64').toString('utf-8');
+    res.type('text/plain').send(content);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('');
+  }
+});
