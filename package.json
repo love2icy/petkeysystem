@@ -1,0 +1,13 @@
+{
+  "name": "petkeysystem",
+  "version": "1.0.0",
+  "description": "Key system backend for Rayfield",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "dotenv": "^16.0.3"
+  }
+}
